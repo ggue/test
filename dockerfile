@@ -27,7 +27,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get install -y tzdata 
 
 # nginx config file 
-COPY default /etc/nginx/sites-enabled/default
+#COPY default /etc/nginx/sites-enabled/default
 
 # 포트 열기 
 EXPOSE 80 3000
