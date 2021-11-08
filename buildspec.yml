@@ -1,0 +1,18 @@
+version: 0.2 
+
+phases: 
+  pre_build: 
+    commands: 
+    - echo now pre_build
+    - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin "179460961317.dkr.ecr.ap-northeast-2.amazonaws.com" 
+  build: 
+    commands: 
+    - echo now build 
+    - docker build -t test:latest . 
+    - docker tag test:latest 179460961317.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest 
+  post_build:
+    commands: 
+    - echo now post_build 
+    - docker push 179460961317.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest 
+    - printf '[{"name":"%s","imageUri":"%s"}]' test 179460961317.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest > imagedefinitions.json 
+artifacts: files: imagedefinitions.json
