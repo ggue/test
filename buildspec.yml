@@ -15,4 +15,5 @@ phases:
     - echo now post_build 
     - docker push 179460961317.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest 
     - printf '[{"name":"%s","imageUri":"%s"}]' test 179460961317.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest > imagedefinitions.json 
-artifacts: files: imagedefinitions.json
+artifacts: 
+  files: imagedefinitions.json
